@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Asistencia.Model
 {
-    public class Profesorcs
+    public class Profesores
     {
     }
 }
