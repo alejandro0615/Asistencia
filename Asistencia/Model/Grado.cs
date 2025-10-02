@@ -1,24 +1,24 @@
-﻿using System;
+﻿using Asistencia.Model;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Asistencia.Model
+public class Grado
 {
-    public class Grado
+    public int GradoId { get; set; }
+
+    [Required]
+    [StringLength(50)]
+    [RegularExpression(@"^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$", ErrorMessage = "El nombre solo puede tener letras")]
+    public string Nombre { get; set; }
+
+
+    public virtual ICollection<Alumno> Alumno { get; set; }
+
+    // Muchos a muchos
+    public virtual ICollection<Grado_Asignatura> Grado_Asignatura { get; set; }
+
+    public int CantidadAlumnos
     {
-        public int GradoId { get; set; }
-
-
-        [Required]
-        [StringLength(50)]
-        public string Nombre { get; set; }
-
-
-        [Required]
-        public int Cantidad_alumnos { get; set; }
-
+        get { return Alumno != null ? Alumno.Count : 0; }
     }
 }
